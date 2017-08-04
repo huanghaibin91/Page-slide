@@ -1,0 +1,25 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.box>div>div {
+    color: white;
+    font-size: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.box>ul li {
+    width: 20px;
+    height: 20px;
+    margin: 20px;
+    border-radius: 50%;
+    border: 5px solid white;
+    transition: all 0.5s ease;
+}
+
+.box>ul li.active {
+    border-width: 8px;
+}

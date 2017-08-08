@@ -1,34 +1,34 @@
 ;
 (function ($, window, document, undefined) {
     "use strict";
-
+    
     var PageSlide = function (ele, opt) {
         this.ele = ele,
-            this.child = this.ele.find('>div'),
-            this.descendant = this.child.find('>div'),
-            this.index = 1,
-            // 默认参数
-            this.defaults = {
-                direction: 'vertical', // 滑动方向，参数vertical,horizontal
-                fullPage: true, // 是否是全屏滑动
-                width: 500, // 不是全屏滚动时，设置滑动宽度
-                height: 500, // 不是全屏滚动时，设置滑动高度
-                autoSlide: false, // 是否自动滚动
-                loop: true, // 是否循环滚动
-                delay: 3000, // 自动滚动间隔时间
-                duration: 1000, // 滚动持续时间
-                navigation: true, // 是否显示定位分页
-                navigationPosition: 'bottom', // 定位分页位置，参数bottom,right
-                navigationEvent: 'click', // 定位分页触发事件，如mouseover、click
-                callback: function () {}, // 回调函数
-            },
+        this.child = this.ele.find('>div'),
+        this.descendant = this.child.find('>div'),
+        this.index = 1,
+        // 默认参数
+        this.defaults = {
+            direction: 'vertical', // 滑动方向，参数vertical,horizontal
+            fullPage: true, // 是否是全屏滑动
+            width: 500, // 不是全屏滚动时，设置滑动宽度
+            height: 500, // 不是全屏滚动时，设置滑动高度
+            autoSlide: false, // 是否自动滚动
+            loop: true, // 是否循环滚动
+            delay: 3000, // 自动滚动间隔时间
+            duration: 1000, // 滚动持续时间
+            navigation: true, // 是否显示定位分页
+            // navigationPosition: 'bottom', // 定位分页位置，参数bottom,right
+            navigationEvent: 'click', // 定位分页触发事件，如mouseover、click
+            callback: function () {}, // 回调函数
+        },
 
-            this.options = $.extend(true, {}, this.defaults, opt || {}),
-            this.directionFlag = this.options.direction === "vertical" ? true : false, // 滚动方向判断
-            this.offset = 0,
-            this.pagesCount = this.descendant.length, // 页面数量
-            this.slideFlag = true, // 判断页面是否可以滑动
-            this.timer = null // 定时器
+        this.options = $.extend(true, {}, this.defaults, opt || {}),
+        this.directionFlag = this.options.direction === "vertical" ? true : false, // 滚动方向判断
+        this.offset = 0,
+        this.pagesCount = this.descendant.length, // 页面数量
+        this.slideFlag = true, // 判断页面是否可以滑动
+        this.timer = null // 定时器
     }
     // 添加方法
     PageSlide.prototype = {
@@ -43,7 +43,13 @@
             var that = this;
             // 自动滑动
             if (that.options.autoSlide) {
-                this.autoPlay();
+                that.autoPlay();
+                that.ele.on('mouseover', function () {
+                    that.pausePlay();
+                });
+                that.ele.on('mouseout', function () {
+                    that.autoPlay();
+                });
             } else {
                 // 全屏状态下绑定鼠标滚轮事件
                 if (that.options.fullPage) {
@@ -75,7 +81,7 @@
                     }
                 }
                 if (that.options.autoSlide) {
-                    this.autoPlay();
+                    that.autoPlay();
                 }
             });
             // 全屏滑动状态，页面大小改变后改变元素大小
@@ -178,9 +184,6 @@
         // 创建定位导航
         setNavigation: function () {
             var that = this;
-            that.ele.css({
-                'position': 'relative'
-            });
             if (that.options.navigation) {
                 var navigationHtml = '';
                 for (var i = 0; i < that.pagesCount - 2; i++) {
@@ -189,36 +192,6 @@
                 navigationHtml = '<ul>' + navigationHtml + '</ul>';
                 that.ele.append(navigationHtml);
                 that.ele.find('ul>li').eq(0).addClass('active');
-                that.ele.find('ul').css({
-                    'list-style': 'none',
-                    'display': 'flex'
-                });
-                if (that.options.fullPage) {
-                    that.ele.find('>ul').css({
-                        'position': 'fixed',
-                    });
-                } else {
-                    that.ele.find('>ul').css({
-                        'position': 'absolute',
-                    });
-                }
-                if (that.options.navigationPosition == 'bottom') {
-                    that.ele.find('>ul').css({
-                        'width': '100%',
-                        'bottom': '0',
-                        'justify-content': 'center',
-                        'align-items': 'center'
-                    });
-                } else {
-                    that.ele.find('>ul').css({
-                        'height': '100%',
-                        'top': '0',
-                        'right': '0',
-                        'flex-direction': 'column',
-                        'justify-content': 'center',
-                        'align-items': 'center'
-                    });
-                }
             }
         },
         // 自动滑动
@@ -255,7 +228,6 @@
                 this.sliding(-this.offset);
                 this.activeNavigation();
             }
-            console.log(this.index);
         },
         // 页面滑动
         sliding: function (offset) {
@@ -307,7 +279,7 @@
         return this.each(function () {
             var $this = $(this);
             var pageSlide = new PageSlide($this, options);
-            return pageSlide.init();
+            pageSlide.init();
         });
     };
 }(jQuery, window, document));

@@ -1,0 +1,39 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.box {
+    position: relative;
+}
+
+.box>div>div {
+    color: white;
+    font-size: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.box>ul {
+    width: 100%;
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    bottom: 0;
+} 
+
+.box>ul li {
+    width: 15px;
+    height: 15px;
+    margin: 20px;
+    border-radius: 50%;
+    border: 3px solid white;
+    transition: all 0.5s ease;
+}
+
+.box>ul li.active {
+    border-color: black;
+}

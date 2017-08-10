@@ -13,7 +13,7 @@
             <div>
                 <div style="background-color: red;">Page1</div>
                 <div style="background-color: orange;">Page2</div>
-                <div style="background-color: blue;">Page3</div>
+                <div style="background-color: blue;"><span class="text">Page3</span></div>
                 <div style="background-color: yellow;">Page4</div>
             </div>
             <button type="button" class="prev"></button>
@@ -31,8 +31,12 @@
                 height: 400,
                 autoSlide: true,
                 callback: function (index) {
-                    if (index === 1) {
-                        alert('hello');
+                    if (index === 2) {
+                        alert('当前是第二页');
+                    } else if (index === 3) {
+                        $('.text').toggleClass('active');
+                    } else if (index === 4) {
+                        $('.text').toggleClass('active');
                     }
                 }
             });

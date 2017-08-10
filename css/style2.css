@@ -27,14 +27,22 @@
 } 
 
 .box>ul li {
-    width: 20px;
-    height: 20px;
+    width: 10px;
+    height: 10px;
     margin: 20px;
     border-radius: 50%;
     transition: all 0.5s ease; 
-    background: white;
+    border: 2px solid white;
 }
 
 .box>ul li.active {
-    background: black;
+    border-color: black;
+}
+
+ .text {
+    transition: all 1s ease-in-out;
+}
+
+.text.active {
+    color: orchid;
 }

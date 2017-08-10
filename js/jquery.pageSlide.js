@@ -15,10 +15,9 @@
             height: 500, // 不是全屏滚动时，设置滑动高度
             autoSlide: false, // 是否自动滚动
             loop: true, // 是否循环滚动
-            delay: 3000, // 自动滚动间隔时间
-            duration: 1000, // 滚动持续时间
+            delay: 3000, // 自动滚动间隔时间，单位ms
+            duration: 1000, // 滚动持续时间，单位ms
             navigation: true, // 是否显示定位分页
-            // navigationPosition: 'bottom', // 定位分页位置，参数bottom,right
             navigationEvent: 'click', // 定位分页触发事件，如mouseover、click
             callback: function () {}, // 回调函数
         },
@@ -243,7 +242,8 @@
                 that.child.animate(animateCss, that.options.duration, function () {
                     that.slideFlag = true;
                     if (that.options.callback && $.type(that.options.callback) === "function") {
-                        that.options.callback();
+                        var index = that.index;
+                        that.options.callback(index);
                     }
                     // 无缝滚动
                     var offsetPostion = that.directionFlag ? that.child.position().top : that.child.position().left;

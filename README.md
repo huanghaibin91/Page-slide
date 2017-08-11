@@ -1,5 +1,6 @@
 # page-slide
-jQuery页面滑动插件，可简单实现全屏滚动和轮播图效果
+
+jQuery页面滑动插件，可简单实现全屏滚动和轮播图效果，觉得不错可以[star](https://github.com/huanghaibin91/Page-slide)一下
 
 ----------
 - 插件默认参数
@@ -14,18 +15,19 @@ jQuery页面滑动插件，可简单实现全屏滚动和轮播图效果
         duration: 1000, // 滚动持续时间
         navigation: true, // 是否显示定位分页，分页导航样式可在CSS中设置，当前导航会获得类名`active`，导航样式请在CSS中设置
         navigationEvent: 'click', // 定位分页触发事件，如mouseover、click
-        callback: function () {}, // 回调函数
+        callback: function () {}, // 回调函数，默认传入参数index，方便判断当前页
 
 - 页面结构
 		
-		<!-- 目标div -->
+		<!-- 目标div结构 -->
 		<div>
 			<div>
 				<div>Page One</div>
 				<div>Page Two</div>
 				<div>Page Three</div>
 			</div>
-			<!-- navigation设置为true，将会生成导航元素
+
+			<!-- 设置navigation设置为true，将会自动生成导航元素
 			<ul>
 				<li> 1 </li>
 				<li> 2 </li>
@@ -33,3 +35,11 @@ jQuery页面滑动插件，可简单实现全屏滚动和轮播图效果
 			</ul>
 			-->
 		<div>
+
+- demo演示
+
+全屏滚动演示： [https://huanghaibin91.github.io/Page-slide/demo/demo-fullpage](https://huanghaibin91.github.io/Page-slide/demo/demo-fullpage "全屏滚动")
+
+轮播图演示： [https://huanghaibin91.github.io/Page-slide/demo/demo-carousel](https://huanghaibin91.github.io/Page-slide/demo/demo-carousel "轮播图")
+
+回调函数演示： [https://huanghaibin91.github.io/Page-slide/demo/demo-callback](https://huanghaibin91.github.io/Page-slide/demo/demo-callback "回调函数")

@@ -30,6 +30,7 @@
                 width: 600,
                 height: 400,
                 autoSlide: true,
+                // 回调函数默认参入参数index，可以通过判断当前的index值判断当前是第几页从而触发回调函数
                 callback: function (index) {
                     if (index === 2) {
                         alert('当前是第二页');
